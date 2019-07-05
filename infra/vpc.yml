@@ -79,5 +79,6 @@ Resources:
         - FromPort: 0
           ToPort: 0
           CidrIp: 0.0.0.0/0
+      IpProtocol: -1
       VpcId:
-        Ref:
+        Ref: vpc
