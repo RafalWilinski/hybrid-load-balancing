@@ -1,0 +1,32 @@
+Resources:
+  alb:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: ${self:provider.name}-alb
+      Subnets:
+        - Ref: subnet1
+        - Ref: subnet2
+  albListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn:
+        Ref: alb
+      Port: 80
+      Protocol: HTTP
+      DefaultActions:
+        - Order: 2
+          Type: forward
+          TargetGroupArn:
+            Ref: ec2TargetGroup
+  ec2TargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Port: 3000
+      TargetType: instance
+      Protocol: HTTP
+      VpcId:
+        Ref: vpc
+      Targets:
+        - Port: 3000
+          Id:
+            Ref: ec2Instance

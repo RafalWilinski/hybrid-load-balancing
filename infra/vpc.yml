@@ -1,0 +1,59 @@
+Resources:
+  vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      Tags:
+        - Key: Name
+          Value: ${self:provider.name}-vpc
+      CidrBlock: 20.0.0.0/16
+  subnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      CidrBlock: 20.0.1.0/24
+      MapPublicIpOnLaunch: true
+      VpcId:
+        Ref: vpc
+  subnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1b
+      CidrBlock: 20.0.2.0/24
+      MapPublicIpOnLaunch: true
+      VpcId:
+        Ref: vpc
+  routeTable1:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: vpc
+  routeIpgw1:
+    Type: AWS::EC2::Route
+    Properties:
+      GatewayId:
+        Ref: ipgw
+      RouteTableId:
+        Ref: routeTable1
+      DestinationCidrBlock: 0.0.0.0/0
+  routeTable2:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: vpc
+  routeIpgw2:
+    Type: AWS::EC2::Route
+    Properties:
+      GatewayId:
+        Ref: ipgw
+      RouteTableId:
+        Ref: routeTable2
+      DestinationCidrBlock: 0.0.0.0/0
+  ipgw:
+    Type: AWS::EC2::InternetGateway
+  ipgwAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId:
+        Ref: vpc
+      InternetGatewayId:
+        Ref: ipgw

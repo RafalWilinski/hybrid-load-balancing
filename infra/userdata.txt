@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Install git
+sudo yum install git
+
+# Install Node 10
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+. ~/.nvm/nvm.sh
+nvm install 10
+
+git clone https://github.com/RafalWilinski/hybrid-load-balancing.git 
+cd hybrid-load-balancing/ec2-app
+
+PORT=3000 node app.js &
+

@@ -1,0 +1,8 @@
+Resources:
+  ec2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-035b3c7efe6d061d5
+      InstanceType: t2.micro
+      SubnetId:
+        Ref: subnet1

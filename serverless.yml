@@ -1,0 +1,21 @@
+service: hybrid-load-balancing
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+functions:
+  hello:
+    handler: handler.handle
+    events:
+      - alb:
+          listenerArn:
+            Ref: albListener
+          priority: 1
+          conditions:
+            path: /lambda
+
+resources:
+  - ${file(./infra/alb.yml)}
+  - ${file(./infra/ec2.yml)}
+  - ${file(./infra/vpc.yml)}
