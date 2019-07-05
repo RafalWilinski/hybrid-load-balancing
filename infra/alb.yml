@@ -6,6 +6,8 @@ Resources:
       Subnets:
         - Ref: subnet1
         - Ref: subnet2
+      SecurityGroups:
+        - Ref: sg
   albListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:

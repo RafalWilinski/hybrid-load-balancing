@@ -11,5 +11,7 @@ nvm install 10
 git clone https://github.com/RafalWilinski/hybrid-load-balancing.git 
 cd hybrid-load-balancing/ec2-app
 
+npm install
+
 PORT=3000 node app.js &
 

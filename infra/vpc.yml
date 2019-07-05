@@ -27,6 +27,20 @@ Resources:
     Properties:
       VpcId:
         Ref: vpc
+  subnetRoute1:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: routeTable1
+      SubnetId:
+        Ref: subnet1
+  subnetRoute2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: routeTable2
+      SubnetId:
+        Ref: subnet2
   routeIpgw1:
     Type: AWS::EC2::Route
     Properties:
@@ -57,3 +71,13 @@ Resources:
         Ref: vpc
       InternetGatewayId:
         Ref: ipgw
+  sg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow all
+      SecurityGroupIngress:
+        - FromPort: 0
+          ToPort: 0
+          CidrIp: 0.0.0.0/0
+      VpcId:
+        Ref:

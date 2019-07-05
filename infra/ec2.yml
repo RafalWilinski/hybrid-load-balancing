@@ -3,6 +3,9 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: ami-035b3c7efe6d061d5
+      UserData: IyEvYmluL2Jhc2gKCiMgSW5zdGFsbCBnaXQKc3VkbyB5dW0gaW5zdGFsbCBnaXQKCiMgSW5zdGFsbCBOb2RlIDEwCmN1cmwgLW8tIGh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9udm0tc2gvbnZtL3YwLjM0LjAvaW5zdGFsbC5zaCB8IGJhc2gKLiB+Ly5udm0vbnZtLnNoCm52bSBpbnN0YWxsIDEwCgpnaXQgY2xvbmUgaHR0cHM6Ly9naXRodWIuY29tL1JhZmFsV2lsaW5za2kvaHlicmlkLWxvYWQtYmFsYW5jaW5nLmdpdCAKY2QgaHlicmlkLWxvYWQtYmFsYW5jaW5nL2VjMi1hcHAKCm5wbSBpbnN0YWxsCgpQT1JUPTMwMDAgbm9kZSBhcHAuanMgJgoK
       InstanceType: t2.micro
       SubnetId:
         Ref: subnet1
+      SecurityGroupIds:
+        - Ref: sg
